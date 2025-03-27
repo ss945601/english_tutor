@@ -12,6 +12,7 @@ class TestPhaseWidget extends StatelessWidget {
   final Function(String) onLetterSelected;
   final VoidCallback onCheck;
   final VoidCallback onGiveUp;
+  final VoidCallback onUndo;
   final VoidCallback onNextWord;
 
   const TestPhaseWidget({
@@ -25,6 +26,7 @@ class TestPhaseWidget extends StatelessWidget {
     required this.onLetterSelected,
     required this.onCheck,
     required this.onGiveUp,
+    required this.onUndo,
     required this.onNextWord,
   });
 
@@ -150,6 +152,13 @@ class TestPhaseWidget extends StatelessWidget {
                       ElevatedButton(
                         onPressed: onCheck,
                         child: const Text('Check'),
+                      ),
+                      ElevatedButton(
+                        onPressed: onUndo,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                        ),
+                        child: const Text('Undo'),
                       ),
                       ElevatedButton(
                         onPressed: onGiveUp,

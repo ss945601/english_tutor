@@ -186,6 +186,15 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
     });
   }
 
+  void _onUndo() {
+    if (selectedLetters.isNotEmpty) {
+      setState(() {
+        final lastLetter = selectedLetters.removeLast();
+        shuffledLetters.add(lastLetter);
+      });
+    }
+  }
+
   @override
   void dispose() {
     _controller.dispose();
@@ -242,6 +251,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                     onCheck: _checkWord,
                     onGiveUp: _giveUp,
                     onNextWord: _moveToNextWord,
+                    onUndo: _onUndo,
                   ),
           ),
         ],
