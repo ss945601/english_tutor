@@ -1,8 +1,10 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 import '../models/toeic_word.dart';
 import '../data/toeic_words.dart';
+import '../services/tts_service.dart';
+import '../widgets/memory_phase_widget.dart';
+import '../widgets/test_phase_widget.dart';
+import '../widgets/result_dialog.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({super.key});
@@ -28,40 +30,11 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
   List<ToeicWord> correctWords = [];
   List<ToeicWord> incorrectWords = [];
   
-  // TTS controller
-  final FlutterTts flutterTts = FlutterTts();
-  bool _ttsInitialized = false;
-  
-  // Initialize TTS
-  Future<void> _initTts() async {
-    try {
-      await flutterTts.setLanguage('en-US');
-      await flutterTts.setSpeechRate(0.5);
-      await flutterTts.setVolume(1.0);
-      await flutterTts.setPitch(1.0);
-      _ttsInitialized = true;
-    } catch (e) {
-      debugPrint('TTS initialization failed: $e');
-      _ttsInitialized = false;
-    }
-  }
-  
-  // TTS speak function
-  Future<void> _speakWord(String word) async {
-    if (!_ttsInitialized) {
-      await _initTts();
-    }
-    try {
-      await flutterTts.speak(word);
-    } catch (e) {
-      debugPrint('TTS speak failed: $e');
-    }
-  }
+  final TtsService ttsService = TtsService();
 
   @override
   void initState() {
     super.initState();
-    _initTts();
     _initializeGame();
     _controller = AnimationController(
       duration: const Duration(seconds: 30),
@@ -149,7 +122,6 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
       });
     }
     
-    // Check if this was the last word
     if (currentWordIndex >= gameWords.length - 1) {
       _showGameOver();
     }
@@ -163,7 +135,6 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
       incorrectWords.add(currentWord);
     });
     
-    // Check if this was the last word
     if (currentWordIndex >= gameWords.length - 1) {
       _showGameOver();
     }
@@ -187,59 +158,41 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        title: const Text('Game Over'),
-        content: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Your final score: $score'),
-              const SizedBox(height: 20),
-              if (correctWords.isNotEmpty) ...[
-                const Text('Correct Words:', style: TextStyle(fontWeight: FontWeight.bold)),
-                ...correctWords.map((word) => Text('• ${word.word} - ${word.meaning}')),
-                const SizedBox(height: 10),
-              ],
-              if (incorrectWords.isNotEmpty) ...[
-                const Text('Incorrect Words:', style: TextStyle(fontWeight: FontWeight.bold)),
-                ...incorrectWords.map((word) => Text('• ${word.word} - ${word.meaning}')),
-              ],
-            ],
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).pop(); // Return to home screen
-            },
-            child: const Text('Return to Home'),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              setState(() {
-                score = 0;
-                _initializeGame();
-                _controller.reset();
-                _controller.forward();
-              });
-            },
-            child: const Text('Play Again'),
-          ),
-        ],
+      builder: (context) => ResultDialog(
+        score: score,
+        correctWords: correctWords,
+        incorrectWords: incorrectWords,
+        onPlayAgain: () {
+          Navigator.of(context).pop();
+          setState(() {
+            score = 0;
+            _initializeGame();
+            _controller.reset();
+            _controller.forward();
+          });
+        },
+        onReturnHome: () {
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+        },
       ),
     );
+  }
+
+  void _onLetterSelected(String letter) {
+    setState(() {
+      selectedLetters.add(letter);
+      shuffledLetters.remove(letter);
+    });
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    ttsService.dispose();
     super.dispose();
   }
 
-  // Rest of the build method remains the same...
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -272,235 +225,24 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
             ),
           ),
           Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (currentPhase == GamePhase.memorize)
-                    Column(
-                      children: [
-                        ...gameWords
-                            .map(
-                              (word) => Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 10,
-                                  horizontal: 16,
-                                ),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          word.word,
-                                          style: const TextStyle(
-                                            fontSize: 24,
-                                            letterSpacing: 2,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                        IconButton(
-                                          icon: const Icon(Icons.volume_up),
-                                          onPressed: () => _speakWord(word.word),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 5),
-                                    Text(
-                                      'Meaning: ${word.meaning}',
-                                      style: const TextStyle(fontSize: 18),
-                                      textAlign: TextAlign.center,
-                                      softWrap: true,
-                                    ),
-                                    Text(
-                                      'Example: ${word.example}',
-                                      style: const TextStyle(fontSize: 16),
-                                      textAlign: TextAlign.center,
-                                      softWrap: true,
-                                    ),
-                                    Text(
-                                      'Synonyms: ${word.synonyms.join(', ')}',
-                                      style: const TextStyle(fontSize: 16),
-                                      textAlign: TextAlign.center,
-                                      softWrap: true,
-                                    ),
-                                    const Divider(),
-                                  ],
-                                ),
-                              ),
-                            )
-                            .toList(),
-                        const SizedBox(height: 20),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                          child: ElevatedButton(
-                            onPressed: _startTest,
-                            style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 40,
-                                vertical: 15,
-                              ),
-                            ),
-                            child: const Text(
-                              '開始測驗',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
-                  else
-                    Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Column(
-                            children: [
-                              Text(
-                                'Hint: ${_getHintWord()}',
-                                style: const TextStyle(
-                                  fontSize: 24,
-                                  letterSpacing: 2,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              const SizedBox(height: 10),
-                              Text(
-                                'Meaning: ${currentWord.meaning}',
-                                style: const TextStyle(fontSize: 18),
-                                textAlign: TextAlign.center,
-                                softWrap: true,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        if (showAnswer) ...[
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Answer: ${currentWord.word}',
-                                      style: const TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    IconButton(
-                                      icon: const Icon(Icons.volume_up),
-                                      onPressed: () => _speakWord(currentWord.word),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                Text(
-                                  'Example: ${currentWord.example}',
-                                  style: const TextStyle(fontSize: 18),
-                                  textAlign: TextAlign.center,
-                                ),
-                                const SizedBox(height: 10),
-                                Text(
-                                  'Synonyms: ${currentWord.synonyms.join(", ")}',
-                                  style: const TextStyle(fontSize: 18),
-                                  textAlign: TextAlign.center,
-                                ),
-                                const SizedBox(height: 20),
-                                if (currentWordIndex < gameWords.length - 1)
-                                  ElevatedButton(
-                                    onPressed: _moveToNextWord,
-                                    child: const Text('Next Word'),
-                                  ),
-                              ],
-                            ),
-                          ),
-                        ] else ...[
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: Container(
-                              padding: const EdgeInsets.all(16),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.blue),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Text(
-                                selectedLetters.join(' '),
-                                style: const TextStyle(
-                                  fontSize: 24,
-                                  letterSpacing: 2,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: Wrap(
-                              spacing: 8,
-                              runSpacing: 8,
-                              alignment: WrapAlignment.center,
-                              children: shuffledLetters.map((letter) {
-                                return ElevatedButton(
-                                  onPressed: selectedLetters.length <
-                                          currentWord.word.length
-                                      ? () {
-                                          setState(() {
-                                            selectedLetters.add(letter);
-                                            shuffledLetters.remove(letter);
-                                            if (selectedLetters.length ==
-                                                currentWord.word.length) {
-                                              _checkWord();
-                                            }
-                                          });
-                                        }
-                                      : null,
-                                  child: Text(
-                                    letter,
-                                    style: const TextStyle(fontSize: 20),
-                                  ),
-                                );
-                              }).toList(),
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ElevatedButton(
-                                onPressed: selectedLetters.isNotEmpty
-                                    ? () {
-                                        setState(() {
-                                          final letter = selectedLetters.removeLast();
-                                          shuffledLetters.add(letter);
-                                        });
-                                      }
-                                    : null,
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.red,
-                                ),
-                                child: const Text('Undo'),
-                              ),
-                              const SizedBox(width: 20),
-                              ElevatedButton(
-                                onPressed: _giveUp,
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.orange,
-                                ),
-                                child: const Text('Give Up'),
-                              ),
-                            ],
-                          ),
-                        ],
-                        const SizedBox(height: 20),
-                      ],
-                    ),
-                ],
-              ),
-            ),
+            child: currentPhase == GamePhase.memorize
+                ? MemoryPhaseWidget(
+                    gameWords: gameWords,
+                    onStartTest: _startTest,
+                    ttsService: ttsService,
+                  )
+                : TestPhaseWidget(
+                    currentWord: currentWord,
+                    hintWord: _getHintWord(),
+                    shuffledLetters: shuffledLetters,
+                    selectedLetters: selectedLetters,
+                    showAnswer: showAnswer,
+                    ttsService: ttsService,
+                    onLetterSelected: _onLetterSelected,
+                    onCheck: _checkWord,
+                    onGiveUp: _giveUp,
+                    onNextWord: _moveToNextWord,
+                  ),
           ),
         ],
       ),
