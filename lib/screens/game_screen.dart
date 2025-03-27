@@ -23,6 +23,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
   int currentWordIndex = 0;
   bool isTimerActive = false;
   late Map<String, String> hintWords;
+  bool showAnswer = false;
 
   @override
   void initState() {
@@ -76,6 +77,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
     shuffledLetters = currentWord.word.split('')..shuffle();
     selectedLetters = [];
     currentPhase = GamePhase.memorize;
+    showAnswer = false;
     _generateHintWords();
   }
 
@@ -85,6 +87,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
       currentWord = gameWords[currentWordIndex];
       shuffledLetters = currentWord.word.split('')..shuffle();
       selectedLetters = [];
+      showAnswer = false;
       _controller.reset();
       _controller.forward();
     });
@@ -95,13 +98,17 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
     if (enteredWord == currentWord.word) {
       setState(() {
         score += 20;
-        if (currentWordIndex < gameWords.length - 1) {
-          _moveToNextWord();
-        } else {
-          _showGameOver();
-        }
+        showAnswer = true;
       });
     }
+  }
+
+  void _giveUp() {
+    setState(() {
+      showAnswer = true;
+      selectedLetters = currentWord.word.split('');
+      shuffledLetters = [];
+    });
   }
 
   void _startTest() {
@@ -111,6 +118,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
       currentWord = gameWords[currentWordIndex];
       shuffledLetters = currentWord.word.split('')..shuffle();
       selectedLetters = [];
+      showAnswer = false;
       isTimerActive = true;
       _controller.reset();
       _controller.forward();
@@ -275,68 +283,116 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Container(
-                            padding: const EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.blue),
-                              borderRadius: BorderRadius.circular(8),
+                        if (showAnswer) ...[
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Answer: ${currentWord.word}',
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  'Example: ${currentWord.example}',
+                                  style: const TextStyle(fontSize: 18),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  'Synonyms: ${currentWord.synonyms.join(", ")}',
+                                  style: const TextStyle(fontSize: 18),
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 20),
+                                if (currentWordIndex < gameWords.length - 1)
+                                  ElevatedButton(
+                                    onPressed: _moveToNextWord,
+                                    child: const Text('Next Word'),
+                                  ),
+                              ],
                             ),
-                            child: Text(
-                              selectedLetters.join(' '),
-                              style: const TextStyle(
-                                fontSize: 24,
-                                letterSpacing: 2,
+                          ),
+                        ] else ...[
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Container(
+                              padding: const EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blue),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Text(
+                                selectedLetters.join(' '),
+                                style: const TextStyle(
+                                  fontSize: 24,
+                                  letterSpacing: 2,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 20),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Wrap(
-                            spacing: 8,
-                            runSpacing: 8,
-                            alignment: WrapAlignment.center,
-                            children: shuffledLetters.map((letter) {
-                              return ElevatedButton(
-                                onPressed: selectedLetters.length <
-                                        currentWord.word.length
+                          const SizedBox(height: 20),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Wrap(
+                              spacing: 8,
+                              runSpacing: 8,
+                              alignment: WrapAlignment.center,
+                              children: shuffledLetters.map((letter) {
+                                return ElevatedButton(
+                                  onPressed: selectedLetters.length <
+                                          currentWord.word.length
+                                      ? () {
+                                          setState(() {
+                                            selectedLetters.add(letter);
+                                            shuffledLetters.remove(letter);
+                                            if (selectedLetters.length ==
+                                                currentWord.word.length) {
+                                              _checkWord();
+                                            }
+                                          });
+                                        }
+                                      : null,
+                                  child: Text(
+                                    letter,
+                                    style: const TextStyle(fontSize: 20),
+                                  ),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton(
+                                onPressed: selectedLetters.isNotEmpty
                                     ? () {
                                         setState(() {
-                                          selectedLetters.add(letter);
-                                          shuffledLetters.remove(letter);
-                                          if (selectedLetters.length ==
-                                              currentWord.word.length) {
-                                            _checkWord();
-                                          }
+                                          final letter = selectedLetters.removeLast();
+                                          shuffledLetters.add(letter);
                                         });
                                       }
                                     : null,
-                                child: Text(
-                                  letter,
-                                  style: const TextStyle(fontSize: 20),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.red,
                                 ),
-                              );
-                            }).toList(),
+                                child: const Text('Undo'),
+                              ),
+                              const SizedBox(width: 20),
+                              ElevatedButton(
+                                onPressed: _giveUp,
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.orange,
+                                ),
+                                child: const Text('Give Up'),
+                              ),
+                            ],
                           ),
-                        ),
-                        const SizedBox(height: 20),
-                        ElevatedButton(
-                          onPressed: selectedLetters.isNotEmpty
-                              ? () {
-                                  setState(() {
-                                    final letter = selectedLetters.removeLast();
-                                    shuffledLetters.add(letter);
-                                  });
-                                }
-                              : null,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red,
-                          ),
-                          child: const Text('Undo'),
-                        ),
+                        ],
                         const SizedBox(height: 20),
                       ],
                     ),
