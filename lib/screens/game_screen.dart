@@ -22,6 +22,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
   GamePhase currentPhase = GamePhase.memorize;
   int currentWordIndex = 0;
   bool isTimerActive = false;
+  late Map<String, String> hintWords;
 
   @override
   void initState() {
@@ -43,19 +44,28 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
   }
 
   String _getHintWord() {
-    final wordLength = currentWord.word.length;
-    final hintCount = (wordLength / 2).floor();
-    final positions = List.generate(wordLength, (index) => index)..shuffle();
-    final hintPositions = positions.take(hintCount).toSet();
+    return hintWords[currentWord.word] ?? '';
+  }
 
-    return currentWord.word
-        .split('')
-        .asMap()
-        .entries
-        .map((entry) {
-          return hintPositions.contains(entry.key) ? entry.value : '_';
-        })
-        .join('');
+  void _generateHintWords() {
+    hintWords = {};
+    for (var word in gameWords) {
+      final wordLength = word.word.length;
+      final hintCount = (wordLength / 2).floor();
+      final positions = List.generate(wordLength, (index) => index)..shuffle();
+      final hintPositions = positions.take(hintCount).toSet();
+
+      final hint = word.word
+          .split('')
+          .asMap()
+          .entries
+          .map((entry) {
+            return hintPositions.contains(entry.key) ? entry.value : '_';
+          })
+          .join('');
+      
+      hintWords[word.word] = hint;
+    }
   }
 
   void _initializeGame() {
@@ -66,6 +76,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
     shuffledLetters = currentWord.word.split('')..shuffle();
     selectedLetters = [];
     currentPhase = GamePhase.memorize;
+    _generateHintWords();
   }
 
   void _moveToNextWord() {
@@ -110,25 +121,24 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder:
-          (context) => AlertDialog(
-            title: const Text('Game Over'),
-            content: Text('Your final score: $score'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  setState(() {
-                    score = 0;
-                    _initializeGame();
-                    _controller.reset();
-                    _controller.forward();
-                  });
-                },
-                child: const Text('Play Again'),
-              ),
-            ],
+      builder: (context) => AlertDialog(
+        title: const Text('Game Over'),
+        content: Text('Your final score: $score'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              setState(() {
+                score = 0;
+                _initializeGame();
+                _controller.reset();
+                _controller.forward();
+              });
+            },
+            child: const Text('Play Again'),
           ),
+        ],
+      ),
     );
   }
 
@@ -289,43 +299,39 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                             spacing: 8,
                             runSpacing: 8,
                             alignment: WrapAlignment.center,
-                            children:
-                                shuffledLetters.map((letter) {
-                                  return ElevatedButton(
-                                    onPressed:
-                                        selectedLetters.length <
-                                                currentWord.word.length
-                                            ? () {
-                                              setState(() {
-                                                selectedLetters.add(letter);
-                                                shuffledLetters.remove(letter);
-                                                if (selectedLetters.length ==
-                                                    currentWord.word.length) {
-                                                  _checkWord();
-                                                }
-                                              });
-                                            }
-                                            : null,
-                                    child: Text(
-                                      letter,
-                                      style: const TextStyle(fontSize: 20),
-                                    ),
-                                  );
-                                }).toList(),
+                            children: shuffledLetters.map((letter) {
+                              return ElevatedButton(
+                                onPressed: selectedLetters.length <
+                                        currentWord.word.length
+                                    ? () {
+                                        setState(() {
+                                          selectedLetters.add(letter);
+                                          shuffledLetters.remove(letter);
+                                          if (selectedLetters.length ==
+                                              currentWord.word.length) {
+                                            _checkWord();
+                                          }
+                                        });
+                                      }
+                                    : null,
+                                child: Text(
+                                  letter,
+                                  style: const TextStyle(fontSize: 20),
+                                ),
+                              );
+                            }).toList(),
                           ),
                         ),
                         const SizedBox(height: 20),
                         ElevatedButton(
-                          onPressed:
-                              selectedLetters.isNotEmpty
-                                  ? () {
-                                    setState(() {
-                                      final letter =
-                                          selectedLetters.removeLast();
-                                      shuffledLetters.add(letter);
-                                    });
-                                  }
-                                  : null,
+                          onPressed: selectedLetters.isNotEmpty
+                              ? () {
+                                  setState(() {
+                                    final letter = selectedLetters.removeLast();
+                                    shuffledLetters.add(letter);
+                                  });
+                                }
+                              : null,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.red,
                           ),
