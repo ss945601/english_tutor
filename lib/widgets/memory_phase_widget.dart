@@ -19,58 +19,63 @@ class MemoryPhaseWidget extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          ...gameWords
-              .map(
-                (word) => Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 16,
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            word.word,
-                            style: const TextStyle(
-                              fontSize: 24,
-                              letterSpacing: 2,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.volume_up),
-                            onPressed: () => ttsService.speakWord(word.word),
-                          ),
-                        ],
+...gameWords
+    .map(
+      (word) => Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 10,
+          horizontal: 16,
+        ),
+        child: Card(
+          elevation: 2,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      word.word,
+                      style: const TextStyle(
+                        fontSize: 24,
+                        letterSpacing: 2,
+                        fontWeight: FontWeight.bold,
                       ),
-                      const SizedBox(height: 5),
-                      Text(
-                        'Meaning: ${word.meaning}',
-                        style: const TextStyle(fontSize: 18),
-                        textAlign: TextAlign.center,
-                        softWrap: true,
-                      ),
-                      Text(
-                        'Example: ${word.example}',
-                        style: const TextStyle(fontSize: 16),
-                        textAlign: TextAlign.center,
-                        softWrap: true,
-                      ),
-                      Text(
-                        'Synonyms: ${word.synonyms.join(', ')}',
-                        style: const TextStyle(fontSize: 16),
-                        textAlign: TextAlign.center,
-                        softWrap: true,
-                      ),
-                      const Divider(),
-                    ],
-                  ),
+                      textAlign: TextAlign.center,
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.volume_up),
+                      onPressed: () => ttsService.speakWord(word.word),
+                    ),
+                  ],
                 ),
-              )
-              .toList(),
+                const SizedBox(height: 5),
+                Text(
+                  'Meaning: ${word.meaning}',
+                  style: const TextStyle(fontSize: 18),
+                  textAlign: TextAlign.center,
+                  softWrap: true,
+                ),
+                Text(
+                  'Example: ${word.example}',
+                  style: const TextStyle(fontSize: 16),
+                  textAlign: TextAlign.center,
+                  softWrap: true,
+                ),
+                Text(
+                  'Synonyms: ${word.synonyms.join(', ')}',
+                  style: const TextStyle(fontSize: 16),
+                  textAlign: TextAlign.center,
+                  softWrap: true,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    )
+    .toList(),
           const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
