@@ -24,6 +24,8 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
   bool isTimerActive = false;
   late Map<String, String> hintWords;
   bool showAnswer = false;
+  List<ToeicWord> correctWords = [];
+  List<ToeicWord> incorrectWords = [];
 
   @override
   void initState() {
@@ -78,10 +80,17 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
     selectedLetters = [];
     currentPhase = GamePhase.memorize;
     showAnswer = false;
+    correctWords = [];
+    incorrectWords = [];
     _generateHintWords();
   }
 
   void _moveToNextWord() {
+    if (currentWordIndex >= gameWords.length - 1) {
+      _showGameOver();
+      return;
+    }
+    
     setState(() {
       currentWordIndex++;
       currentWord = gameWords[currentWordIndex];
@@ -99,7 +108,18 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
       setState(() {
         score += 20;
         showAnswer = true;
+        correctWords.add(currentWord);
       });
+    } else {
+      setState(() {
+        showAnswer = true;
+        incorrectWords.add(currentWord);
+      });
+    }
+    
+    // Check if this was the last word
+    if (currentWordIndex >= gameWords.length - 1) {
+      _showGameOver();
     }
   }
 
@@ -108,7 +128,13 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
       showAnswer = true;
       selectedLetters = currentWord.word.split('');
       shuffledLetters = [];
+      incorrectWords.add(currentWord);
     });
+    
+    // Check if this was the last word
+    if (currentWordIndex >= gameWords.length - 1) {
+      _showGameOver();
+    }
   }
 
   void _startTest() {
@@ -131,8 +157,33 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
       barrierDismissible: false,
       builder: (context) => AlertDialog(
         title: const Text('Game Over'),
-        content: Text('Your final score: $score'),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Your final score: $score'),
+              const SizedBox(height: 20),
+              if (correctWords.isNotEmpty) ...[
+                const Text('Correct Words:', style: TextStyle(fontWeight: FontWeight.bold)),
+                ...correctWords.map((word) => Text('• ${word.word} - ${word.meaning}')),
+                const SizedBox(height: 10),
+              ],
+              if (incorrectWords.isNotEmpty) ...[
+                const Text('Incorrect Words:', style: TextStyle(fontWeight: FontWeight.bold)),
+                ...incorrectWords.map((word) => Text('• ${word.word} - ${word.meaning}')),
+              ],
+            ],
+          ),
+        ),
         actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).pop(); // Return to home screen
+            },
+            child: const Text('Return to Home'),
+          ),
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
@@ -156,6 +207,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
     super.dispose();
   }
 
+  // Rest of the build method remains the same...
   @override
   Widget build(BuildContext context) {
     return Scaffold(
