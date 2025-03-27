@@ -60,7 +60,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(
+                  Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => const GameScreen()),
                   );
                 },
