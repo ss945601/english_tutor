@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import '../models/toeic_word.dart';
 import '../data/toeic_words.dart';
 
@@ -26,10 +27,41 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
   bool showAnswer = false;
   List<ToeicWord> correctWords = [];
   List<ToeicWord> incorrectWords = [];
+  
+  // TTS controller
+  final FlutterTts flutterTts = FlutterTts();
+  bool _ttsInitialized = false;
+  
+  // Initialize TTS
+  Future<void> _initTts() async {
+    try {
+      await flutterTts.setLanguage('en-US');
+      await flutterTts.setSpeechRate(0.5);
+      await flutterTts.setVolume(1.0);
+      await flutterTts.setPitch(1.0);
+      _ttsInitialized = true;
+    } catch (e) {
+      debugPrint('TTS initialization failed: $e');
+      _ttsInitialized = false;
+    }
+  }
+  
+  // TTS speak function
+  Future<void> _speakWord(String word) async {
+    if (!_ttsInitialized) {
+      await _initTts();
+    }
+    try {
+      await flutterTts.speak(word);
+    } catch (e) {
+      debugPrint('TTS speak failed: $e');
+    }
+  }
 
   @override
   void initState() {
     super.initState();
+    _initTts();
     _initializeGame();
     _controller = AnimationController(
       duration: const Duration(seconds: 30),
@@ -256,14 +288,23 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                                 ),
                                 child: Column(
                                   children: [
-                                    Text(
-                                      word.word,
-                                      style: const TextStyle(
-                                        fontSize: 24,
-                                        letterSpacing: 2,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      textAlign: TextAlign.center,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          word.word,
+                                          style: const TextStyle(
+                                            fontSize: 24,
+                                            letterSpacing: 2,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        IconButton(
+                                          icon: const Icon(Icons.volume_up),
+                                          onPressed: () => _speakWord(word.word),
+                                        ),
+                                      ],
                                     ),
                                     const SizedBox(height: 5),
                                     Text(
@@ -340,12 +381,21 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                             padding: const EdgeInsets.all(16.0),
                             child: Column(
                               children: [
-                                Text(
-                                  'Answer: ${currentWord.word}',
-                                  style: const TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Answer: ${currentWord.word}',
+                                      style: const TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(Icons.volume_up),
+                                      onPressed: () => _speakWord(currentWord.word),
+                                    ),
+                                  ],
                                 ),
                                 const SizedBox(height: 10),
                                 Text(
