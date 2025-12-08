@@ -29,6 +29,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
   bool showAnswer = false;
   List<ToeicWord> correctWords = [];
   List<ToeicWord> incorrectWords = [];
+  late String currentHintWord;
   
   final TtsService ttsService = TtsService();
 
@@ -36,23 +37,26 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _initializeGame();
+    ttsService.initTts(); // Initialize TTS early
     _controller = AnimationController(
       duration: const Duration(seconds: 30),
       vsync: this,
     );
-    _controller.addListener(() {
-      if (_controller.isCompleted && isTimerActive) {
-        if (currentWordIndex < gameWords.length - 1) {
-          _moveToNextWord();
-        } else {
-          _showGameOver();
-        }
+    _controller.addStatusListener(_onTimerStatusChanged);
+  }
+
+  void _onTimerStatusChanged(AnimationStatus status) {
+    if (status == AnimationStatus.completed && isTimerActive) {
+      if (currentWordIndex < gameWords.length - 1) {
+        _moveToNextWord();
+      } else {
+        _showGameOver();
       }
-    });
+    }
   }
 
   String _getHintWord() {
-    return hintWords[currentWord.word] ?? '';
+    return currentHintWord;
   }
 
   void _generateHintWords() {
@@ -88,6 +92,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
     correctWords = [];
     incorrectWords = [];
     _generateHintWords();
+    currentHintWord = hintWords[currentWord.word] ?? '';
   }
 
   void _moveToNextWord() {
@@ -102,6 +107,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
       shuffledLetters = currentWord.word.split('')..shuffle();
       selectedLetters = [];
       showAnswer = false;
+      currentHintWord = hintWords[currentWord.word] ?? '';
       _controller.reset();
       _controller.forward();
     });
@@ -148,6 +154,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
       shuffledLetters = currentWord.word.split('')..shuffle();
       selectedLetters = [];
       showAnswer = false;
+      currentHintWord = hintWords[currentWord.word] ?? '';
       isTimerActive = true;
       _controller.reset();
       _controller.forward();
@@ -180,10 +187,13 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
   }
 
   void _onLetterSelected(String letter) {
-    setState(() {
-      selectedLetters.add(letter);
-      shuffledLetters.remove(letter);
-    });
+    final index = shuffledLetters.indexOf(letter);
+    if (index != -1) {
+      setState(() {
+        selectedLetters.add(letter);
+        shuffledLetters.removeAt(index);
+      });
+    }
   }
 
   void _onUndo() {

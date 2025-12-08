@@ -33,8 +33,12 @@ class ResultDialog extends StatelessWidget {
                 'Correct Words:',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              ...correctWords.map(
-                (word) => Text('• ${word.word} - ${word.meaning}'),
+              ...List.generate(
+                correctWords.length,
+                (index) {
+                  final word = correctWords[index];
+                  return Text('• ${word.word} - ${word.meaning}');
+                },
               ),
               const SizedBox(height: 10),
             ],
@@ -43,8 +47,12 @@ class ResultDialog extends StatelessWidget {
                 'Incorrect Words:',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              ...incorrectWords.map(
-                (word) => Text('• ${word.word} - ${word.meaning}'),
+              ...List.generate(
+                incorrectWords.length,
+                (index) {
+                  final word = incorrectWords[index];
+                  return Text('• ${word.word} - ${word.meaning}');
+                },
               ),
             ],
           ],

@@ -110,40 +110,44 @@ class TestPhaseWidget extends StatelessWidget {
                       border: Border.all(color: Colors.blue),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: selectedLetters
-                          .map(
-                            (letter) => Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 4),
-                              child: Text(
-                                letter,
-                                style: const TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
+                    child: selectedLetters.isEmpty
+                        ? const SizedBox(height: 32)
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: List.generate(
+                              selectedLetters.length,
+                              (index) => Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 4),
+                                child: Text(
+                                  selectedLetters[index],
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ),
-                          )
-                          .toList(),
-                    ),
+                          ),
                   ),
                   const SizedBox(height: 20),
                   Wrap(
                     alignment: WrapAlignment.center,
                     spacing: 8,
                     runSpacing: 8,
-                    children: shuffledLetters
-                        .map(
-                          (letter) => ElevatedButton(
-                            onPressed: () => onLetterSelected(letter),
-                            child: Text(
-                              letter,
-                              style: const TextStyle(fontSize: 20),
-                            ),
+                    children: List.generate(
+                      shuffledLetters.length,
+                      (index) {
+                        final letter = shuffledLetters[index];
+                        return ElevatedButton(
+                          key: ValueKey('shuffled_$index'),
+                          onPressed: () => onLetterSelected(letter),
+                          child: Text(
+                            letter,
+                            style: const TextStyle(fontSize: 20),
                           ),
-                        )
-                        .toList(),
+                        );
+                      },
+                    ),
                   ),
                   const SizedBox(height: 20),
                   Row(
