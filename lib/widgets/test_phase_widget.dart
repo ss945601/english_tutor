@@ -139,7 +139,7 @@ class TestPhaseWidget extends StatelessWidget {
                       (index) {
                         final letter = shuffledLetters[index];
                         return ElevatedButton(
-                          key: ValueKey('shuffled_$index'),
+                          key: ValueKey('letter_${letter}_$index'),
                           onPressed: () => onLetterSelected(letter),
                           child: Text(
                             letter,
