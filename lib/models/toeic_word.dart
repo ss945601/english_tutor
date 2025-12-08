@@ -6,7 +6,7 @@ class ToeicWord {
   final List<String> synonyms;
   final int frequency;
 
-  ToeicWord({
+  const ToeicWord({
     required this.word,
     required this.meaning,
     required this.example,
@@ -36,4 +36,14 @@ class ToeicWord {
       'frequency': frequency,
     };
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ToeicWord &&
+          runtimeType == other.runtimeType &&
+          word == other.word;
+
+  @override
+  int get hashCode => word.hashCode;
 }

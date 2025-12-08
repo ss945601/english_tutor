@@ -1,8 +1,8 @@
 import '../models/toeic_word.dart';
 
 class ToeicWords {
-  static final List<ToeicWord> words = [
-    ToeicWord(
+  static const List<ToeicWord> words = [
+    const ToeicWord(
       word: 'accommodate',
       meaning: 'to provide lodging or sufficient space for',
       example: 'The hotel can accommodate up to 500 guests.',
@@ -10,7 +10,7 @@ class ToeicWords {
       synonyms: ['host', 'house', 'lodge'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'negotiate',
       meaning: 'to discuss something to reach an agreement',
       example: 'They will negotiate the terms of the contract tomorrow.',
@@ -18,7 +18,7 @@ class ToeicWords {
       synonyms: ['bargain', 'discuss', 'mediate'],
       frequency: 92,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'implement',
       meaning: 'to put into effect; execute',
       example: 'The company will implement the new policy next month.',
@@ -26,7 +26,7 @@ class ToeicWords {
       synonyms: ['execute', 'perform', 'carry out'],
       frequency: 88,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'initiative',
       meaning: 'the ability to assess and initiate things independently',
       example: 'She showed great initiative in developing the project.',
@@ -34,7 +34,7 @@ class ToeicWords {
       synonyms: ['drive', 'ambition', 'enterprise'],
       frequency: 82,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'deadline',
       meaning: 'the latest time or date by which something should be completed',
       example: 'The deadline for the report is next Friday.',
@@ -42,7 +42,7 @@ class ToeicWords {
       synonyms: ['time limit', 'due date', 'cutoff'],
       frequency: 95,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'innovation',
       meaning: 'a new method, idea, or product',
       example: 'The company is known for its technological innovation.',
@@ -50,7 +50,7 @@ class ToeicWords {
       synonyms: ['invention', 'advancement', 'breakthrough'],
       frequency: 88,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'collaborate',
       meaning: 'to work jointly with others on an activity or project',
       example: 'Our team will collaborate with the marketing department.',
@@ -58,7 +58,7 @@ class ToeicWords {
       synonyms: ['cooperate', 'partner', 'team up'],
       frequency: 90,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'optimize',
       meaning: 'to make something as effective or functional as possible',
       example: 'We need to optimize our workflow for better efficiency.',
@@ -66,7 +66,7 @@ class ToeicWords {
       synonyms: ['improve', 'enhance', 'streamline'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'procurement',
       meaning: 'the action of obtaining or buying goods and services',
       example: 'The procurement department handles all office supplies.',
@@ -74,7 +74,7 @@ class ToeicWords {
       synonyms: ['acquisition', 'purchase', 'buying'],
       frequency: 82,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'compliance',
       meaning: 'the action of following rules or standards',
       example: 'All employees must ensure compliance with safety regulations.',
@@ -82,7 +82,7 @@ class ToeicWords {
       synonyms: ['conformity', 'adherence', 'obedience'],
       frequency: 87,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'delegate',
       meaning: 'to entrust a task or responsibility to another person',
       example: 'The manager will delegate the project tasks to team members.',
@@ -90,7 +90,7 @@ class ToeicWords {
       synonyms: ['assign', 'transfer', 'entrust'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'facilitate',
       meaning: 'to make an action or process easier',
       example: 'The new software will facilitate better communication between departments.',
@@ -98,7 +98,7 @@ class ToeicWords {
       synonyms: ['enable', 'assist', 'expedite'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'strategic',
       meaning: 'carefully designed or planned to serve a particular purpose',
       example: 'We need a strategic approach to enter the new market.',
@@ -106,7 +106,7 @@ class ToeicWords {
       synonyms: ['planned', 'tactical', 'calculated'],
       frequency: 89,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'allocate',
       meaning: 'to distribute resources for a particular purpose',
       example: 'The budget will allocate funds for new equipment.',
@@ -114,7 +114,7 @@ class ToeicWords {
       synonyms: ['distribute', 'assign', 'designate'],
       frequency: 83,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'inquire',
       meaning: 'to ask for information or investigate',
       example: 'Please inquire at the front desk for assistance.',
@@ -122,7 +122,7 @@ class ToeicWords {
       synonyms: ['ask', 'investigate', 'query'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'resolve',
       meaning: 'to find a solution to a problem or dispute',
       example: 'Our support team will resolve your technical issues quickly.',
@@ -130,7 +130,7 @@ class ToeicWords {
       synonyms: ['solve', 'settle', 'fix'],
       frequency: 88,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'enhance',
       meaning: 'to improve or increase the quality or value',
       example: 'The new features will enhance the user experience.',
@@ -138,7 +138,7 @@ class ToeicWords {
       synonyms: ['improve', 'upgrade', 'augment'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'coordinate',
       meaning: 'to organize different elements to work together effectively',
       example: 'She will coordinate the activities for the company event.',
@@ -146,7 +146,7 @@ class ToeicWords {
       synonyms: ['arrange', 'organize', 'harmonize'],
       frequency: 87,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'revenue',
       meaning: 'income generated from business activities',
       example: "The company's quarterly revenue exceeded expectations.",
@@ -154,7 +154,7 @@ class ToeicWords {
       synonyms: ['income', 'earnings', 'proceeds'],
       frequency: 89,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'campaign',
       meaning: 'an organized course of action to achieve a goal',
       example: 'The marketing team launched a new advertising campaign.',
@@ -162,7 +162,7 @@ class ToeicWords {
       synonyms: ['promotion', 'drive', 'initiative'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'forecast',
       meaning: 'to predict or estimate future events or trends',
       example: 'Analysts forecast strong growth in the tech sector.',
@@ -170,7 +170,7 @@ class ToeicWords {
       synonyms: ['predict', 'project', 'estimate'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'portfolio',
       meaning: 'a collection of investments or works',
       example: 'The investment portfolio includes stocks and bonds.',
@@ -178,7 +178,7 @@ class ToeicWords {
       synonyms: ['collection', 'assortment', 'range'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'interface',
       meaning: 'a point where two systems meet and interact',
       example: 'The new user interface is more intuitive and user-friendly.',
@@ -186,7 +186,7 @@ class ToeicWords {
       synonyms: ['connection', 'interaction', 'gateway'],
       frequency: 87,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'integrate',
       meaning: 'to combine parts into a whole system',
       example: 'We need to integrate the new software with our existing systems.',
@@ -194,7 +194,7 @@ class ToeicWords {
       synonyms: ['combine', 'merge', 'unify'],
       frequency: 88,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'bandwidth',
       meaning: 'capacity for data transfer or workload',
       example: "The team doesn't have enough bandwidth to take on new projects.",
@@ -202,7 +202,7 @@ class ToeicWords {
       synonyms: ['capacity', 'resources', 'capability'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'analytics',
       meaning: 'the systematic analysis of data',
       example: 'The analytics report shows significant growth in user engagement.',
@@ -210,7 +210,7 @@ class ToeicWords {
       synonyms: ['statistics', 'metrics', 'data'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'milestone',
       meaning: 'a significant stage or event in a project',
       example: 'The team has reached an important milestone in the development process.',
@@ -218,7 +218,7 @@ class ToeicWords {
       synonyms: ['achievement', 'landmark', 'breakthrough'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'audit',
       meaning: 'an official inspection of records or processes',
       example: 'The quality assurance team will conduct an audit next week.',
@@ -226,7 +226,7 @@ class ToeicWords {
       synonyms: ['review', 'inspection', 'examination'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'protocol',
       meaning: 'official procedure or system of rules',
       example: 'All employees must follow the safety protocols.',
@@ -234,7 +234,7 @@ class ToeicWords {
       synonyms: ['procedure', 'process', 'standard'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'benchmark',
       meaning: 'a standard against which something can be measured',
       example: 'Our performance exceeded the industry benchmarks.',
@@ -242,7 +242,7 @@ class ToeicWords {
       synonyms: ['standard', 'criterion', 'measure'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'stakeholder',
       meaning: 'a person or group with an interest in a project or business',
       example: 'We need to present the results to all stakeholders.',
@@ -250,7 +250,7 @@ class ToeicWords {
       synonyms: ['investor', 'participant', 'partner'],
       frequency: 88,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'leverage',
       meaning: 'to use something to maximum advantage',
       example: 'The company will leverage its brand recognition to enter new markets.',
@@ -258,7 +258,7 @@ class ToeicWords {
       synonyms: ['utilize', 'exploit', 'capitalize'],
       frequency: 87,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'scalable',
       meaning: 'able to be expanded or upgraded on demand',
       example: 'We need a scalable solution that can grow with our business.',
@@ -266,7 +266,7 @@ class ToeicWords {
       synonyms: ['expandable', 'adaptable', 'flexible'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'contingency',
       meaning: 'a future event that is possible but cannot be predicted',
       example: 'The project plan includes contingency measures for potential delays.',
@@ -274,7 +274,7 @@ class ToeicWords {
       synonyms: ['backup plan', 'provision', 'alternative'],
       frequency: 83,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'streamline',
       meaning: 'to make a system or organization more efficient',
       example: 'The new process will streamline our operations.',
@@ -282,7 +282,7 @@ class ToeicWords {
       synonyms: ['simplify', 'optimize', 'improve'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'agile',
       meaning: 'able to move quickly and easily; adaptable',
       example: 'Our team uses agile development methodologies.',
@@ -290,7 +290,7 @@ class ToeicWords {
       synonyms: ['flexible', 'nimble', 'responsive'],
       frequency: 87,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'infrastructure',
       meaning: 'basic physical and organizational structures needed for operation',
       example: 'The company is investing in cloud infrastructure.',
@@ -298,7 +298,7 @@ class ToeicWords {
       synonyms: ['framework', 'foundation', 'system'],
       frequency: 89,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'deployment',
       meaning: 'the process of putting software into production',
       example: 'The deployment of the new version will happen tonight.',
@@ -306,7 +306,7 @@ class ToeicWords {
       synonyms: ['release', 'rollout', 'launch'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'iteration',
       meaning: 'repetition of a process to generate a sequence of outcomes',
       example: 'Each iteration of the design brings improvements.',
@@ -314,7 +314,7 @@ class ToeicWords {
       synonyms: ['cycle', 'version', 'round'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'scope',
       meaning: 'the extent of the area or subject matter being dealt with',
       example: 'The project scope was clearly defined in the meeting.',
@@ -322,7 +322,7 @@ class ToeicWords {
       synonyms: ['range', 'extent', 'coverage'],
       frequency: 88,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'redundancy',
       meaning: 'the inclusion of extra components to ensure system reliability',
       example: 'We need redundancy in our backup systems.',
@@ -330,7 +330,7 @@ class ToeicWords {
       synonyms: ['backup', 'duplication', 'overlap'],
       frequency: 83,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'methodology',
       meaning: 'a system of methods used in a particular area',
       example: 'The team adopted a new development methodology.',
@@ -338,7 +338,7 @@ class ToeicWords {
       synonyms: ['approach', 'procedure', 'technique'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'prerequisite',
       meaning: 'something required as a prior condition',
       example: 'Basic coding is a prerequisite for this position.',
@@ -346,7 +346,7 @@ class ToeicWords {
       synonyms: ['requirement', 'condition', 'necessity'],
       frequency: 82,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'compatibility',
       meaning: 'the ability to work together without conflict',
       example: 'We need to ensure compatibility with older versions.',
@@ -354,7 +354,7 @@ class ToeicWords {
       synonyms: ['interoperability', 'consistency', 'harmony'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'repository',
       meaning: 'a place where data is stored and maintained',
       example: 'The code is stored in a Git repository.',
@@ -362,7 +362,7 @@ class ToeicWords {
       synonyms: ['storage', 'archive', 'database'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'acquisition',
       meaning: 'the act of acquiring or gaining possession of something',
       example: 'The company announced a major acquisition of its competitor.',
@@ -370,7 +370,7 @@ class ToeicWords {
       synonyms: ['purchase', 'takeover', 'buyout'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'agenda',
       meaning: 'a list of items to be discussed at a meeting',
       example: 'Please review the agenda before the conference call.',
@@ -378,7 +378,7 @@ class ToeicWords {
       synonyms: ['schedule', 'program', 'outline'],
       frequency: 90,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'amendment',
       meaning: 'a change or addition to a legal or official document',
       example: 'The contract requires an amendment to include the new terms.',
@@ -386,7 +386,7 @@ class ToeicWords {
       synonyms: ['modification', 'revision', 'change'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'anticipate',
       meaning: 'to expect or predict something will happen',
       example: 'We anticipate strong growth in the fourth quarter.',
@@ -394,7 +394,7 @@ class ToeicWords {
       synonyms: ['expect', 'predict', 'forecast'],
       frequency: 87,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'appraisal',
       meaning: 'an assessment of the value or quality of something',
       example: 'The annual performance appraisal will be next week.',
@@ -402,7 +402,7 @@ class ToeicWords {
       synonyms: ['evaluation', 'assessment', 'review'],
       frequency: 83,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'authorize',
       meaning: 'to give official permission or approval',
       example: 'Only managers can authorize expenses over \$1000.',
@@ -410,7 +410,7 @@ class ToeicWords {
       synonyms: ['approve', 'permit', 'sanction'],
       frequency: 88,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'briefing',
       meaning: 'a meeting to give information or instructions',
       example: 'The team attended a briefing about the new project.',
@@ -418,7 +418,7 @@ class ToeicWords {
       synonyms: ['meeting', 'presentation', 'update'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'capacity',
       meaning: 'the maximum amount that something can contain or produce',
       example: 'The factory is operating at full capacity.',
@@ -426,7 +426,7 @@ class ToeicWords {
       synonyms: ['ability', 'capability', 'volume'],
       frequency: 87,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'clause',
       meaning: 'a particular section or provision in a legal document',
       example: 'The confidentiality clause protects company information.',
@@ -434,7 +434,7 @@ class ToeicWords {
       synonyms: ['provision', 'term', 'stipulation'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'commence',
       meaning: 'to begin or start',
       example: 'Construction will commence next month.',
@@ -442,7 +442,7 @@ class ToeicWords {
       synonyms: ['begin', 'start', 'initiate'],
       frequency: 82,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'compensation',
       meaning: 'payment or reward for work or services',
       example: 'The compensation package includes health benefits.',
@@ -450,7 +450,7 @@ class ToeicWords {
       synonyms: ['salary', 'payment', 'remuneration'],
       frequency: 88,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'consensus',
       meaning: 'general agreement among a group',
       example: 'The team reached a consensus on the project timeline.',
@@ -458,7 +458,7 @@ class ToeicWords {
       synonyms: ['agreement', 'accord', 'harmony'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'consolidate',
       meaning: 'to combine several things into a single more effective unit',
       example: 'We need to consolidate our regional offices.',
@@ -466,7 +466,7 @@ class ToeicWords {
       synonyms: ['merge', 'unite', 'combine'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'convene',
       meaning: 'to come together for a meeting',
       example: 'The board will convene to discuss the merger.',
@@ -474,7 +474,7 @@ class ToeicWords {
       synonyms: ['meet', 'assemble', 'gather'],
       frequency: 81,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'credential',
       meaning: 'a qualification or achievement used to indicate suitability',
       example: 'The position requires specific professional credentials.',
@@ -482,7 +482,7 @@ class ToeicWords {
       synonyms: ['qualification', 'certification', 'document'],
       frequency: 83,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'deficit',
       meaning: 'the amount by which something is less than expected or required',
       example: 'The company needs to address its budget deficit.',
@@ -490,7 +490,7 @@ class ToeicWords {
       synonyms: ['shortfall', 'shortage', 'loss'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'designate',
       meaning: 'to officially give a specified role or purpose to someone',
       example: 'She was designated as the project leader.',
@@ -498,7 +498,7 @@ class ToeicWords {
       synonyms: ['appoint', 'assign', 'nominate'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'disbursement',
       meaning: 'the payment of money from a fund',
       example: 'The disbursement of funds will occur next week.',
@@ -506,7 +506,7 @@ class ToeicWords {
       synonyms: ['payment', 'expenditure', 'outlay'],
       frequency: 82,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'disclosure',
       meaning: 'the action of making new information known',
       example: 'Full disclosure of financial records is required.',
@@ -514,7 +514,7 @@ class ToeicWords {
       synonyms: ['revelation', 'announcement', 'declaration'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'dispatch',
       meaning: 'to send something or someone to a destination',
       example: 'The goods will be dispatched from our warehouse today.',
@@ -522,7 +522,7 @@ class ToeicWords {
       synonyms: ['send', 'ship', 'deliver'],
       frequency: 83,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'diversify',
       meaning: 'to vary or expand into different areas',
       example: 'The company plans to diversify its product range.',
@@ -530,7 +530,7 @@ class ToeicWords {
       synonyms: ['expand', 'vary', 'broaden'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'endorse',
       meaning: 'to publicly declare support for something',
       example: 'The CEO endorsed the new marketing strategy.',
@@ -538,7 +538,7 @@ class ToeicWords {
       synonyms: ['support', 'approve', 'back'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'equity',
       meaning: 'the value of shares issued by a company',
       example: 'The investors received equity in the startup.',
@@ -546,7 +546,7 @@ class ToeicWords {
       synonyms: ['shares', 'stock', 'ownership'],
       frequency: 87,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'expedite',
       meaning: 'to make something happen more quickly',
       example: 'We need to expedite the approval process.',
@@ -554,7 +554,7 @@ class ToeicWords {
       synonyms: ['accelerate', 'speed up', 'hasten'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'feasible',
       meaning: 'possible to do easily or conveniently',
       example: 'The project timeline seems feasible.',
@@ -562,7 +562,7 @@ class ToeicWords {
       synonyms: ['possible', 'practical', 'viable'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'fluctuate',
       meaning: 'to rise and fall irregularly in number or amount',
       example: 'Stock prices tend to fluctuate throughout the day.',
@@ -570,7 +570,7 @@ class ToeicWords {
       synonyms: ['vary', 'change', 'oscillate'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'franchise',
       meaning: 'authorization to sell a company\'s goods or services',
       example: 'They opened a new franchise in the shopping mall.',
@@ -578,7 +578,7 @@ class ToeicWords {
       synonyms: ['license', 'dealership', 'outlet'],
       frequency: 83,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'hierarchy',
       meaning: 'a system in which people or things are arranged by rank',
       example: 'The company has a clear organizational hierarchy.',
@@ -586,7 +586,7 @@ class ToeicWords {
       synonyms: ['ranking', 'structure', 'order'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'incentive',
       meaning: 'something that motivates or encourages someone',
       example: 'The company offers incentives for meeting sales targets.',
@@ -594,7 +594,7 @@ class ToeicWords {
       synonyms: ['motivation', 'reward', 'bonus'],
       frequency: 87,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'inventory',
       meaning: 'a complete list of items in stock',
       example: 'We need to conduct an inventory check.',
@@ -602,7 +602,7 @@ class ToeicWords {
       synonyms: ['stock', 'supply', 'goods'],
       frequency: 88,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'invoice',
       meaning: 'a list of goods sent or services provided with their prices',
       example: 'Please process this invoice for payment.',
@@ -610,7 +610,7 @@ class ToeicWords {
       synonyms: ['bill', 'statement', 'receipt'],
       frequency: 89,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'liability',
       meaning: 'legal responsibility for something',
       example: 'Insurance covers potential liabilities.',
@@ -618,7 +618,7 @@ class ToeicWords {
       synonyms: ['responsibility', 'obligation', 'duty'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'logistics',
       meaning: 'the detailed organization and implementation of a plan',
       example: 'The logistics of shipping overseas are complex.',
@@ -626,7 +626,7 @@ class ToeicWords {
       synonyms: ['planning', 'organization', 'management'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'mandate',
       meaning: 'an official order or commission to do something',
       example: 'The new safety regulations are a government mandate.',
@@ -634,7 +634,7 @@ class ToeicWords {
       synonyms: ['order', 'directive', 'command'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'merger',
       meaning: 'the combination of two or more companies',
       example: 'The merger will be completed by year-end.',
@@ -642,7 +642,7 @@ class ToeicWords {
       synonyms: ['consolidation', 'amalgamation', 'union'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'nominal',
       meaning: 'existing in name only or very small in comparison',
       example: 'There was only a nominal fee for the service.',
@@ -650,7 +650,7 @@ class ToeicWords {
       synonyms: ['minimal', 'token', 'slight'],
       frequency: 82,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'obsolete',
       meaning: 'no longer in use or no longer useful',
       example: 'The old software system has become obsolete.',
@@ -658,7 +658,7 @@ class ToeicWords {
       synonyms: ['outdated', 'defunct', 'antiquated'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'overhead',
       meaning: 'regular business expenses not chargeable to a specific product',
       example: 'We need to reduce our overhead costs.',
@@ -666,7 +666,7 @@ class ToeicWords {
       synonyms: ['expenses', 'costs', 'expenditure'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'paradigm',
       meaning: 'a typical example or pattern of something',
       example: 'This represents a new paradigm in business thinking.',
@@ -674,7 +674,7 @@ class ToeicWords {
       synonyms: ['model', 'pattern', 'example'],
       frequency: 83,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'parameter',
       meaning: 'a limit or boundary that defines the scope of a process',
       example: 'The project parameters were clearly defined.',
@@ -682,7 +682,7 @@ class ToeicWords {
       synonyms: ['limit', 'guideline', 'framework'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'pending',
       meaning: 'awaiting decision or settlement',
       example: 'The approval is still pending.',
@@ -690,7 +690,7 @@ class ToeicWords {
       synonyms: ['awaiting', 'forthcoming', 'upcoming'],
       frequency: 88,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'perception',
       meaning: 'the way in which something is regarded or understood',
       example: 'We need to improve customer perception of our brand.',
@@ -698,7 +698,7 @@ class ToeicWords {
       synonyms: ['understanding', 'view', 'opinion'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'personnel',
       meaning: 'people employed in an organization',
       example: 'The personnel department handles recruitment.',
@@ -706,7 +706,7 @@ class ToeicWords {
       synonyms: ['staff', 'employees', 'workforce'],
       frequency: 87,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'perspective',
       meaning: 'a particular way of considering something',
       example: 'We need to look at this from a different perspective.',
@@ -714,7 +714,7 @@ class ToeicWords {
       synonyms: ['viewpoint', 'outlook', 'stance'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'precedent',
       meaning: 'an earlier event or action that is regarded as an example',
       example: 'This decision will set a precedent for future cases.',
@@ -722,7 +722,7 @@ class ToeicWords {
       synonyms: ['example', 'model', 'pattern'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'preliminary',
       meaning: 'coming before a more important action or event',
       example: 'These are just preliminary findings.',
@@ -730,7 +730,7 @@ class ToeicWords {
       synonyms: ['initial', 'preparatory', 'introductory'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'premium',
       meaning: 'something of superior quality or value',
       example: 'We only use premium materials in our products.',
@@ -738,7 +738,7 @@ class ToeicWords {
       synonyms: ['superior', 'high-quality', 'excellent'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'priority',
       meaning: 'something regarded as more important than others',
       example: 'Customer satisfaction is our top priority.',
@@ -746,7 +746,7 @@ class ToeicWords {
       synonyms: ['preference', 'precedence', 'urgency'],
       frequency: 89,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'proactive',
       meaning: 'creating or controlling a situation rather than responding to it',
       example: 'We need to take a proactive approach to risk management.',
@@ -754,7 +754,7 @@ class ToeicWords {
       synonyms: ['anticipatory', 'preventive', 'forward-thinking'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'procedure',
       meaning: 'an established or official way of doing something',
       example: 'Please follow the standard operating procedure.',
@@ -762,7 +762,7 @@ class ToeicWords {
       synonyms: ['process', 'method', 'system'],
       frequency: 88,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'productivity',
       meaning: 'the effectiveness of productive effort',
       example: 'The new system has increased productivity.',
@@ -770,7 +770,7 @@ class ToeicWords {
       synonyms: ['efficiency', 'output', 'performance'],
       frequency: 87,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'proficiency',
       meaning: 'a high degree of skill or expertise',
       example: 'The job requires proficiency in multiple languages.',
@@ -778,7 +778,7 @@ class ToeicWords {
       synonyms: ['expertise', 'skill', 'competence'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'projection',
       meaning: 'an estimate of future possibilities based on current data',
       example: 'Sales projections for next year look promising.',
@@ -786,7 +786,7 @@ class ToeicWords {
       synonyms: ['forecast', 'prediction', 'estimate'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'proposal',
       meaning: 'a plan or suggestion put forward for consideration',
       example: 'The board will review the business proposal.',
@@ -794,7 +794,7 @@ class ToeicWords {
       synonyms: ['suggestion', 'plan', 'proposition'],
       frequency: 88,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'protocol',
       meaning: 'the official procedure or system of rules',
       example: 'All employees must follow security protocols.',
@@ -802,7 +802,7 @@ class ToeicWords {
       synonyms: ['procedure', 'rules', 'regulations'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'provision',
       meaning: 'the action of providing or supplying something',
       example: 'The contract includes a provision for early termination.',
@@ -810,7 +810,7 @@ class ToeicWords {
       synonyms: ['supply', 'delivery', 'furnishing'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'qualification',
       meaning: 'a quality or accomplishment that makes someone suitable',
       example: 'The position requires specific qualifications.',
@@ -818,7 +818,7 @@ class ToeicWords {
       synonyms: ['credential', 'certification', 'degree'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'quotation',
       meaning: 'a formal statement of the estimated cost for a job',
       example: 'We are waiting for the supplier\'s quotation.',
@@ -826,7 +826,7 @@ class ToeicWords {
       synonyms: ['quote', 'estimate', 'price'],
       frequency: 87,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'ratify',
       meaning: 'to give formal consent to something',
       example: 'The board must ratify the decision.',
@@ -834,7 +834,7 @@ class ToeicWords {
       synonyms: ['approve', 'confirm', 'validate'],
       frequency: 83,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'reconcile',
       meaning: 'to make compatible or consistent',
       example: 'We need to reconcile the two different accounts.',
@@ -842,7 +842,7 @@ class ToeicWords {
       synonyms: ['harmonize', 'balance', 'settle'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'recruitment',
       meaning: 'the process of hiring new people',
       example: 'The recruitment process will begin next month.',
@@ -850,7 +850,7 @@ class ToeicWords {
       synonyms: ['hiring', 'selection', 'employment'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'regulation',
       meaning: 'a rule or directive made by an authority',
       example: 'New safety regulations have been implemented.',
@@ -858,7 +858,7 @@ class ToeicWords {
       synonyms: ['rule', 'law', 'directive'],
       frequency: 87,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'reimburse',
       meaning: 'to repay someone for money they have spent',
       example: 'The company will reimburse your travel expenses.',
@@ -866,7 +866,7 @@ class ToeicWords {
       synonyms: ['repay', 'compensate', 'refund'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'relevant',
       meaning: 'closely connected or appropriate to what is being done',
       example: 'Please provide all relevant documentation.',
@@ -874,7 +874,7 @@ class ToeicWords {
       synonyms: ['applicable', 'pertinent', 'appropriate'],
       frequency: 88,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'remittance',
       meaning: 'a sum of money sent as payment',
       example: 'The remittance should arrive within three days.',
@@ -882,7 +882,7 @@ class ToeicWords {
       synonyms: ['payment', 'transfer', 'transmission'],
       frequency: 83,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'renewable',
       meaning: 'able to be extended or continued',
       example: 'This is a renewable contract.',
@@ -890,7 +890,7 @@ class ToeicWords {
       synonyms: ['sustainable', 'repeatable', 'continuous'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'requisition',
       meaning: 'an official order laying claim to property or materials',
       example: 'Please submit a requisition form for new equipment.',
@@ -898,7 +898,7 @@ class ToeicWords {
       synonyms: ['request', 'order', 'demand'],
       frequency: 82,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'resolution',
       meaning: 'a firm decision to do or not to do something',
       example: 'The board passed a resolution to expand operations.',
@@ -906,7 +906,7 @@ class ToeicWords {
       synonyms: ['decision', 'determination', 'verdict'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'retention',
       meaning: 'the continued possession or use of something',
       example: 'Customer retention is crucial for business growth.',
@@ -914,7 +914,7 @@ class ToeicWords {
       synonyms: ['keeping', 'holding', 'maintenance'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'revenue',
       meaning: 'income from business activities',
       example: 'The company\'s revenue increased by 20%.',
@@ -922,7 +922,7 @@ class ToeicWords {
       synonyms: ['income', 'earnings', 'proceeds'],
       frequency: 88,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'roster',
       meaning: 'a list of people\'s names, typically those who belong to a group',
       example: 'The staff roster for next week has been posted.',
@@ -930,7 +930,7 @@ class ToeicWords {
       synonyms: ['schedule', 'list', 'register'],
       frequency: 83,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'sanction',
       meaning: 'official permission or approval for an action',
       example: 'The project received sanction from management.',
@@ -938,7 +938,7 @@ class ToeicWords {
       synonyms: ['approval', 'permission', 'authorization'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'scenario',
       meaning: 'a postulated sequence or development of events',
       example: 'We need to prepare for different business scenarios.',
@@ -946,7 +946,7 @@ class ToeicWords {
       synonyms: ['situation', 'circumstance', 'possibility'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'schedule',
       meaning: 'a plan for carrying out a process or procedure',
       example: 'The project is running according to schedule.',
@@ -954,7 +954,7 @@ class ToeicWords {
       synonyms: ['timetable', 'plan', 'program'],
       frequency: 90,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'scrutiny',
       meaning: 'critical observation or examination',
       example: 'The proposal will come under close scrutiny.',
@@ -962,7 +962,7 @@ class ToeicWords {
       synonyms: ['examination', 'inspection', 'analysis'],
       frequency: 83,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'segment',
       meaning: 'one of the parts into which something is divided',
       example: 'We need to target different market segments.',
@@ -970,7 +970,7 @@ class ToeicWords {
       synonyms: ['section', 'portion', 'division'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'shipment',
       meaning: 'goods that are shipped',
       example: 'The shipment will arrive next week.',
@@ -978,7 +978,7 @@ class ToeicWords {
       synonyms: ['delivery', 'consignment', 'cargo'],
       frequency: 87,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'specification',
       meaning: 'detailed description of design and materials',
       example: 'The product meets all technical specifications.',
@@ -986,7 +986,7 @@ class ToeicWords {
       synonyms: ['requirement', 'detail', 'criterion'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'subsidiary',
       meaning: 'a company controlled by a larger company',
       example: 'The company has subsidiaries in several countries.',
@@ -994,7 +994,7 @@ class ToeicWords {
       synonyms: ['branch', 'affiliate', 'division'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'substantial',
       meaning: 'of considerable importance or value',
       example: 'The project requires substantial investment.',
@@ -1002,7 +1002,7 @@ class ToeicWords {
       synonyms: ['significant', 'considerable', 'large'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'successor',
       meaning: 'a person or thing that follows or replaces another',
       example: 'They announced the CEO\'s successor today.',
@@ -1010,7 +1010,7 @@ class ToeicWords {
       synonyms: ['replacement', 'heir', 'follower'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'sufficient',
       meaning: 'enough; adequate',
       example: 'Do we have sufficient resources for this project?',
@@ -1018,7 +1018,7 @@ class ToeicWords {
       synonyms: ['adequate', 'enough', 'ample'],
       frequency: 87,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'summit',
       meaning: 'a meeting between leaders',
       example: 'The business summit will be held next month.',
@@ -1026,7 +1026,7 @@ class ToeicWords {
       synonyms: ['conference', 'meeting', 'convention'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'supplement',
       meaning: 'something added to complete or enhance something else',
       example: 'This document serves as a supplement to the main report.',
@@ -1034,7 +1034,7 @@ class ToeicWords {
       synonyms: ['addition', 'complement', 'extension'],
       frequency: 83,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'surplus',
       meaning: 'an amount of something left over when requirements have been met',
       example: 'The company reported a budget surplus.',
@@ -1042,7 +1042,7 @@ class ToeicWords {
       synonyms: ['excess', 'overflow', 'extra'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'survey',
       meaning: 'a detailed study of something',
       example: 'We conducted a customer satisfaction survey.',
@@ -1050,7 +1050,7 @@ class ToeicWords {
       synonyms: ['study', 'examination', 'investigation'],
       frequency: 86,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'sustainable',
       meaning: 'able to be maintained at a certain level',
       example: 'We need to ensure sustainable growth.',
@@ -1058,7 +1058,7 @@ class ToeicWords {
       synonyms: ['viable', 'maintainable', 'renewable'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'symposium',
       meaning: 'a conference or meeting to discuss a particular subject',
       example: 'The annual business symposium starts tomorrow.',
@@ -1066,7 +1066,7 @@ class ToeicWords {
       synonyms: ['conference', 'seminar', 'forum'],
       frequency: 82,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'synthesis',
       meaning: 'combination of ideas to form a theory or system',
       example: 'The report provides a synthesis of current market trends.',
@@ -1074,7 +1074,7 @@ class ToeicWords {
       synonyms: ['combination', 'integration', 'fusion'],
       frequency: 83,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'systematic',
       meaning: 'done according to a fixed plan or system',
       example: 'We need a systematic approach to solving this problem.',
@@ -1082,7 +1082,7 @@ class ToeicWords {
       synonyms: ['methodical', 'organized', 'planned'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'tangible',
       meaning: 'clear and definite; real',
       example: 'We need to see tangible results from this investment.',
@@ -1090,7 +1090,7 @@ class ToeicWords {
       synonyms: ['concrete', 'real', 'substantial'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'tender',
       meaning: 'an offer to carry out work or supply goods at a stated price',
       example: 'The company submitted a tender for the construction project.',
@@ -1098,7 +1098,7 @@ class ToeicWords {
       synonyms: ['bid', 'offer', 'proposal'],
       frequency: 85,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'tentative',
       meaning: 'not certain or fixed; provisional',
       example: 'These are tentative plans subject to approval.',
@@ -1106,7 +1106,7 @@ class ToeicWords {
       synonyms: ['provisional', 'temporary', 'preliminary'],
       frequency: 84,
     ),
-    ToeicWord(
+    const ToeicWord(
       word: 'terminate',
       meaning: 'to bring to an end',
       example: 'They decided to terminate the contract.',

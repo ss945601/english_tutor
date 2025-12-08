@@ -207,6 +207,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
 
   @override
   void dispose() {
+    _controller.stop();
     _controller.dispose();
     ttsService.dispose();
     super.dispose();

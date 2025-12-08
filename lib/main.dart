@@ -17,6 +17,7 @@ class MainApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: const HomeScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
