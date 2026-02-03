@@ -217,33 +217,82 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TOEIC Word Spelling Game'),
+        title: const Text('TOEIC Word Spelling'),
+        centerTitle: false,
+        elevation: 2,
+        leading: IconButton(
+          icon: const Icon(Icons.home),
+          onPressed: () => Navigator.of(context).pop(),
+          tooltip: 'Home',
+        ),
         actions: [
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 16.0),
-              child: Text(
-                'Score: $score',
-                style: const TextStyle(fontSize: 18),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Chip(
+              backgroundColor: Colors.transparent,
+              label: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.star, color: Colors.amber, size: 18),
+                  const SizedBox(width: 6),
+                  Text('$score'),
+                ],
               ),
             ),
+          ),
+          IconButton(
+            icon: const Icon(Icons.replay),
+            tooltip: 'Restart',
+            onPressed: () {
+              setState(() {
+                score = 0;
+                _initializeGame();
+                _controller.reset();
+              });
+            },
           ),
         ],
       ),
       body: Column(
         children: [
-          LinearProgressIndicator(
-            value: 1 - _controller.value,
-            backgroundColor: Colors.grey[200],
-            valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
-          ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              currentPhase == GamePhase.memorize ? '記憶階段' : '測驗階段',
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '${currentWordIndex + 1}/${gameWords.length}',
+                      style: const TextStyle(fontSize: 14, color: Colors.white70),
+                    ),
+                    Row(
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.volume_up),
+                          color: Colors.white70,
+                          onPressed: () => ttsService.speakWord(currentWord.word),
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          currentPhase == GamePhase.memorize ? '記憶階段' : '測驗階段',
+                          style: const TextStyle(color: Colors.white70),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 6),
+                LinearProgressIndicator(
+                  value: isTimerActive ? (1 - _controller.value) : 1.0,
+                  backgroundColor: Colors.white12,
+                  valueColor: AlwaysStoppedAnimation(Theme.of(context).colorScheme.primary),
+                  minHeight: 6,
+                ),
+              ],
             ),
           ),
+          const SizedBox(height: 6),
           Expanded(
             child: currentPhase == GamePhase.memorize
                 ? MemoryPhaseWidget(

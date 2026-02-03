@@ -30,47 +30,42 @@ class MemoryPhaseWidget extends StatelessWidget {
                 ),
                 child: Card(
                   elevation: 2,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    leading: CircleAvatar(
+                      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                      child: Text(
+                        '${index + 1}',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              word.word,
-                              style: const TextStyle(
-                                fontSize: 24,
-                                letterSpacing: 2,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.volume_up),
-                              onPressed: () => ttsService.speakWord(word.word),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 5),
                         Text(
-                          'Meaning: ${word.meaning}',
-                          style: const TextStyle(fontSize: 18),
-                          textAlign: TextAlign.center,
-                          softWrap: true,
+                          word.word,
+                          style: const TextStyle(
+                            fontSize: 22,
+                            letterSpacing: 2,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
-                        Text(
-                          'Example: ${word.example}',
-                          style: const TextStyle(fontSize: 16),
-                          textAlign: TextAlign.center,
-                          softWrap: true,
+                        const SizedBox(width: 8),
+                        IconButton(
+                          icon: const Icon(Icons.volume_up),
+                          onPressed: () => ttsService.speakWord(word.word),
                         ),
-                        Text(
-                          'Synonyms: ${word.synonyms.join(', ')}',
-                          style: const TextStyle(fontSize: 16),
-                          textAlign: TextAlign.center,
-                          softWrap: true,
-                        ),
+                      ],
+                    ),
+                    subtitle: Column(
+                      children: [
+                        const SizedBox(height: 6),
+                        Text('Meaning: ${word.meaning}', textAlign: TextAlign.center),
+                        const SizedBox(height: 4),
+                        Text('Example: ${word.example}', textAlign: TextAlign.center),
+                        const SizedBox(height: 4),
+                        Text('Synonyms: ${word.synonyms.join(', ')}', textAlign: TextAlign.center),
                       ],
                     ),
                   ),
@@ -81,15 +76,14 @@ class MemoryPhaseWidget extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: ElevatedButton(
+          child: ElevatedButton.icon(
             onPressed: onStartTest,
             style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 40,
-                vertical: 15,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             ),
-            child: const Text(
+            icon: const Icon(Icons.play_arrow),
+            label: const Text(
               '開始測驗',
               style: TextStyle(fontSize: 20),
             ),
