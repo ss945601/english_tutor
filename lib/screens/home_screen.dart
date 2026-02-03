@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Colors.blue, Colors.lightBlueAccent],
+            colors: [Color.fromARGB(255, 70, 73, 75), Color.fromARGB(255, 150, 161, 166)],
           ),
         ),
         child: Center(
@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: Colors.blue,
+                        color: Color.fromARGB(255, 72, 76, 78),
                       ),
                     ),
                     SizedBox(height: 20),
@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                       '3. Complete the word before the timer runs out\n'
                       '4. Score points based on word difficulty\n'
                       '5. Challenge yourself with more words!',
-                      style: TextStyle(fontSize: 16, height: 1.5),
+                      style: TextStyle(fontSize: 16, height: 1.5, color: Color.fromARGB(255, 72, 76, 78)),
                     ),
                   ],
                 ),
